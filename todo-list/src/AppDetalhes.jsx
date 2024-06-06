@@ -2,13 +2,11 @@ import React from "react";
 import "./App.css";
 import Item from "./Item.jsx";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 const tarefas = ["useState estados", "useEffect efeitos", "arrow functions"];
 
 function App() {
   const [lista, setLista] = React.useState(tarefas);
-  const [foto, setFoto] = React.useState("");
 
   function clicar(evento) {
     const form = new FormData(evento.target.parentElement);
@@ -20,16 +18,6 @@ function App() {
     setLista(novo);
   }
 
-  const url = "https://632b76785568d3cad870611c.mockapi.io/item/1";
-
-  function consultar() {
-    axios.get(url).then(resposta);
-  }
-
-  function resposta(res) {
-    setFoto(res.data.foto);
-  }
-
   return (
     <>
       <header>
@@ -37,16 +25,6 @@ function App() {
           <Link to="/">Home</Link> | <Link to="/sobre">Sobre</Link>
         </nav>
       </header>
-
-      <div>
-        <h2>Churros</h2>
-
-        <button onClick={consultar}>Consultar</button>
-      </div>
-
-      <div>
-        <img src={foto} alt="Churro" style={{ height: 100 }} />
-      </div>
 
       <h2>Lista de estudos</h2>
 
